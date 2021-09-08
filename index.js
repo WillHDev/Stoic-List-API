@@ -11,16 +11,16 @@ const path = require("path");
 //fn resolve
 const pathToFile = path.resolve("./data.json");
  
+const getResources = () => JSON.parse(fs.readFileSync(pathToFile));
+
 app.get("/", (req, res) => {
         res.send("Hello World")
 })
 
-app.get("/resources", (req, res) => {
-    //console.log(pathToFile);
-    const stringifiedData = fs.readFileSync(pathToFile);
-    console.log(stringifiedData);
-    //console.log("From the code")
-    res.send("Hello Resources")
+app.get("/api/resources", (req, res) => {
+const resources = getResources();
+console.log("HERE" + resources);
+    res.send(resources);
 })
 
 
